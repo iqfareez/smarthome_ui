@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:smarthome_ui/screens/home_screen.dart';
+import 'package:smarthome_ui/home.dart';
+import 'package:smarthome_ui/screens/main_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,8 +19,13 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       child: CupertinoApp(
-        title: 'Smarthome UI Flutter Demo',
-        home: HomeScreen(),
+        title: 'Smarthome UI',
+        home: Home(),
+        localizationsDelegates: [
+          DefaultMaterialLocalizations.delegate,
+          DefaultCupertinoLocalizations.delegate,
+          DefaultWidgetsLocalizations.delegate,
+        ],
       ),
     );
   }

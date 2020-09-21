@@ -3,39 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smarthome_ui/CONSTANTS.dart';
 
-class HomeScreen extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              flex: 1,
-              child: ProfileHeader(),
-            ),
-            Expanded(
-              flex: 1,
-              child: PowerUsageBanner(),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text('Switch 4'),
-            ),
-            Expanded(
-              flex: 1,
-              child: MusicPlayer(),
-            ),
-          ],
-        ),
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 1,
+            child: ProfileHeader(),
+          ),
+          Expanded(
+            flex: 1,
+            child: PowerUsageBanner(),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text('Switch 4'),
+          ),
+          Expanded(
+            flex: 1,
+            child: MusicPlayer(),
+          ),
+          Container(
+            color: accentColour,
+            height: 48,
+          )
+        ],
       ),
-      bottomNavigationBar: CupertinoNavigationBar(),
     );
   }
 }
@@ -138,8 +139,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     FaIcon(FontAwesomeIcons.heart, size: songIconSize, color: Colors.white),
   ];
   List<Icon> pauseIcon = [
-    Icon(Icons.pause,
-        color: Colors.white, size: songIconSize),
+    Icon(Icons.pause, color: Colors.white, size: songIconSize),
     Icon(Icons.play_arrow, color: Colors.white, size: songIconSize)
   ];
 
@@ -148,52 +148,58 @@ class _MusicPlayerState extends State<MusicPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: accentColour,
-      child: Padding(
-        padding: const EdgeInsets.all(paddingValue),
-        child: ListTile(
-            title: Text(
-              songTitle,
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(
-              songArtist,
-              style: TextStyle(color: Colors.purple.shade300),
-            ),
-            leading: ProfileImage(
-              imageLocation: 'images/albumArt.jpg',
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                    icon: isFav ? favIcon[0] : favIcon[1],
-                    onPressed: () {
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(30.0),
+        topRight: Radius.circular(30.0),
+      ),
+      child: Container(
+        color: accentColour,
+        child: Padding(
+          padding: const EdgeInsets.all(paddingValue),
+          child: ListTile(
+              title: Text(
+                songTitle,
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                songArtist,
+                style: TextStyle(color: Colors.purple.shade300),
+              ),
+              leading: ProfileImage(
+                imageLocation: 'images/albumArt.jpg',
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                      icon: isFav ? favIcon[0] : favIcon[1],
+                      onPressed: () {
+                        setState(() {
+                          isFav = !isFav;
+                        });
+                      }),
+                  SizedBox(width: 5),
+                  GestureDetector(
+                    onTap: () {
                       setState(() {
-                        isFav = !isFav;
+                        isPaused = !isPaused;
                       });
-                    }),
-                SizedBox(width: 5),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isPaused = !isPaused;
-                    });
-                  },
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: primaryColour,
+                    },
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: primaryColour,
+                      ),
+                      child: isPaused ? pauseIcon[0] : pauseIcon[1],
                     ),
-                    child: isPaused ? pauseIcon[0] : pauseIcon[1],
-                  ),
-                )
-              ],
-            )),
+                  )
+                ],
+              )),
+        ),
       ),
     );
   }
