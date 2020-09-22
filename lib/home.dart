@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smarthome_ui/CONSTANTS.dart';
 import 'package:smarthome_ui/screens/main_page.dart';
+import 'package:smarthome_ui/screens/power_page.dart';
+import 'package:smarthome_ui/screens/setting_page.dart';
+import 'package:smarthome_ui/screens/user_page.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,6 +15,9 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     MainPage(),
+    UserPage(),
+    PowerPage(),
+    SettingPage()
   ];
   @override
   Widget build(BuildContext context) {
@@ -20,11 +26,16 @@ class _HomeState extends State<Home> {
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
         child: BottomNavigationBar(
+          //TODO: Check colour memang betul2 white ke?
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
+          selectedIconTheme: IconThemeData(color: accentColour, opacity: 1),
+          unselectedIconTheme:
+              IconThemeData(opacity: 0.4), //opacity ranged from 0 to 1
           iconSize: 18,
-          currentIndex: 0,
+
+          currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.home),
@@ -43,6 +54,11 @@ class _HomeState extends State<Home> {
               title: Text('Setting'),
             ),
           ],
+          onTap: (itemIndex) {
+            setState(() {
+              _currentIndex = itemIndex;
+            });
+          },
         ),
       ),
       extendBody: true,

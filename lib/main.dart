@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smarthome_ui/home.dart';
-import 'package:smarthome_ui/screens/main_page.dart';
 
 void main() {
   runApp(MyApp());
