@@ -38,19 +38,19 @@ class _HomeState extends State<Home> {
           items: [
             BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.home),
-              title: Text('Home'),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.userFriends),
-              title: Text('User'),
+              label: 'User',
             ),
             BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.bolt),
-              title: Text('Power'),
+              label: 'Power',
             ),
             BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.cog),
-              title: Text('Setting'),
+              label: 'Setting',
             ),
           ],
           onTap: (itemIndex) {

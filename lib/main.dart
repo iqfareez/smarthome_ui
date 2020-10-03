@@ -18,10 +18,11 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       child: CupertinoApp(
-        debugShowCheckedModeBanner: false,
+        // debugShowCheckedModeBanner: false,
         title: 'Smarthome UI',
         home: Home(),
         localizationsDelegates: [
+          //needed when using Cupertino App idk why
           DefaultMaterialLocalizations.delegate,
           DefaultCupertinoLocalizations.delegate,
           DefaultWidgetsLocalizations.delegate,

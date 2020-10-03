@@ -141,19 +141,27 @@ class MusicPlayer extends StatefulWidget {
   _MusicPlayerState createState() => _MusicPlayerState();
 }
 
-class _MusicPlayerState extends State<MusicPlayer> {
+class _MusicPlayerState extends State<MusicPlayer>
+    with TickerProviderStateMixin {
   List<FaIcon> favIcon = [
     FaIcon(FontAwesomeIcons.solidHeart,
         size: songIconSize, color: Colors.white),
     FaIcon(FontAwesomeIcons.heart, size: songIconSize, color: Colors.white),
   ];
-  List<Icon> pauseIcon = [
-    Icon(Icons.pause, color: Colors.white, size: songIconSize),
-    Icon(Icons.play_arrow, color: Colors.white, size: songIconSize)
-  ];
 
-  bool isPaused = true;
+  AnimationController animationController;
+
+  bool isPlaying = false;
   bool isFav = false;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 350),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -193,18 +201,27 @@ class _MusicPlayerState extends State<MusicPlayer> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        isPaused = !isPaused;
+                        isPlaying = !isPlaying;
+                        isPlaying
+                            ? animationController.forward()
+                            : animationController.reverse();
                       });
                     },
                     child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: primaryColour,
-                      ),
-                      child: isPaused ? pauseIcon[0] : pauseIcon[1],
-                    ),
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: primaryColour,
+                        ),
+                        // child: isPaused ? pauseIcon[0] : pauseIcon[1],
+                        child: Center(
+                          child: AnimatedIcon(
+                            icon: AnimatedIcons.play_pause,
+                            color: Colors.white,
+                            progress: animationController,
+                          ),
+                        )),
                   )
                 ],
               )),
@@ -240,6 +257,7 @@ class ControlCenter extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ControlCenterItem extends StatefulWidget {
   ControlCenterItem(
       {@required this.icon,
