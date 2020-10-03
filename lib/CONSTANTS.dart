@@ -12,3 +12,6 @@ const powerUsageText = '20.3';
 const songTitle = 'Penat';
 const songArtist = 'Andi Bernadee';
 const songIconSize = 18.0;
+
+//power control page
+const kPagePadding = 28.0;

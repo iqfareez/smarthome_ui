@@ -26,7 +26,6 @@ class _HomeState extends State<Home> {
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
         child: BottomNavigationBar(
-          //TODO: Check colour memang betul2 white ke?
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,

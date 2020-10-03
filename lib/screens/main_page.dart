@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smarthome_ui/CONSTANTS.dart';
+import 'package:smarthome_ui/database/room_data.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _MainPageState extends State<MainPage> {
           ),
           Expanded(
             flex: 3,
-            child: Text('Switch 4'),
+            child: ControlCenter(),
           ),
           Expanded(
             flex: 1,
@@ -40,6 +41,8 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+
+//TOP PROFILE HEADER
 
 class ProfileHeader extends StatelessWidget {
   @override
@@ -83,49 +86,55 @@ class ProfileImage extends StatelessWidget {
   }
 }
 
+//POWER USAGE BANNER
+
 class PowerUsageBanner extends StatelessWidget {
   final double baseRadius = 28.0;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(paddingValue),
-      child: ListTile(
-        leading: CircleAvatar(
-          //this CircleAvatar is for border
-          radius: baseRadius,
-          backgroundColor: Colors.grey.shade300,
-          child: CircleAvatar(
-            //This CircleAvatar is for icon
-            radius: baseRadius - 1,
-            backgroundColor:
-                Colors.grey[50], //same as scaffold background colour,
-            child: FaIcon(
-              FontAwesomeIcons.bolt,
-              color: Colors.black,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: paddingValue),
+        child: ListTile(
+          leading: CircleAvatar(
+            //this CircleAvatar is for border
+            radius: baseRadius,
+            backgroundColor: Colors.grey.shade300,
+            child: CircleAvatar(
+              //This CircleAvatar is for icon
+              radius: baseRadius - 1,
+              backgroundColor:
+                  Colors.grey[50], //same as scaffold background colour,
+              child: FaIcon(
+                FontAwesomeIcons.bolt,
+                color: Colors.black,
+              ),
             ),
           ),
-        ),
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.baseline,
-          children: [
-            Text(
-              powerUsageText,
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              ' Kwh',
-              style: TextStyle(fontSize: 15),
-            ),
-          ],
-        ),
-        subtitle: Text(
-          'Power usage for today',
-          style: TextStyle(color: Colors.grey),
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            children: [
+              Text(
+                powerUsageText,
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                ' Kwh',
+                style: TextStyle(fontSize: 15),
+              ),
+            ],
+          ),
+          subtitle: Text(
+            'Power usage for today',
+            style: TextStyle(color: Colors.grey),
+          ),
         ),
       ),
     );
   }
 }
+
+//BOTTOM MUSIC PLAYER
 
 class MusicPlayer extends StatefulWidget {
   @override
@@ -199,6 +208,111 @@ class _MusicPlayerState extends State<MusicPlayer> {
                   )
                 ],
               )),
+        ),
+      ),
+    );
+  }
+}
+
+// CONTROL CENTER (BIG ORANGE BUTTON)
+
+class ControlCenter extends StatelessWidget {
+  final Room room = Room();
+  final double axisSpacing = 26;
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      padding: EdgeInsets.all(axisSpacing),
+      itemCount: room.roomDataList.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: axisSpacing,
+          mainAxisSpacing: axisSpacing),
+      itemBuilder: (BuildContext context, int index) {
+        return ControlCenterItem(
+            icon: room.roomDataList[index].icon,
+            title: room.roomDataList[index].title,
+            numberOfDevices: room.roomDataList[index].numberOfDevices,
+            isActive: room.roomDataList[index].isActive);
+      },
+    );
+  }
+}
+
+class ControlCenterItem extends StatefulWidget {
+  ControlCenterItem(
+      {@required this.icon,
+      @required this.title,
+      @required this.numberOfDevices,
+      @required this.isActive});
+
+  final String title;
+  final int numberOfDevices;
+  final IconData icon;
+  bool isActive;
+
+  @override
+  _ControlCenterItemState createState() => _ControlCenterItemState();
+}
+
+class _ControlCenterItemState extends State<ControlCenterItem> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          widget.isActive = !widget.isActive;
+          //toggle on / off of control center
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border:
+              !widget.isActive ? Border.all(color: Colors.grey.shade300) : null,
+          borderRadius: BorderRadius.circular(16),
+          color: widget.isActive ? primaryColour : Colors.transparent,
+        ),
+        padding: EdgeInsets.all(18),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  // padding: EdgeInsets.all(18),
+                  child: FaIcon(
+                    widget.icon,
+                    semanticLabel: widget.title,
+                    size: 28,
+                    color: widget.isActive ? Colors.white : primaryColour,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.title,
+                  style: TextStyle(
+                      color: widget.isActive ? Colors.white : Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  '${widget.numberOfDevices} device',
+                  style: TextStyle(color: Colors.black.withAlpha(100)),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

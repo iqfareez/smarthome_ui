@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       child: CupertinoApp(
+        debugShowCheckedModeBanner: false,
         title: 'Smarthome UI',
         home: Home(),
         localizationsDelegates: [
