@@ -10,6 +10,8 @@ Smarthome UI concept. Build with [Flutter](https://flutter.dev/) and Dart. Desig
 
 ## Web demo
 
+https://smarthome-ui-flutter.web.app/
+
 ## Dependencies :package:
 
 - [line_awesome_icons](https://pub.dev/packages/line_awesome_icons)
