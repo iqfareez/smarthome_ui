@@ -242,7 +242,9 @@ class ControlCenter extends StatelessWidget {
       padding: EdgeInsets.all(axisSpacing),
       itemCount: room.roomDataList.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: MediaQuery.of(context).size.width > 600
+              ? 4
+              : 2, //layour rendered quite differently on different screen sizes
           crossAxisSpacing: axisSpacing,
           mainAxisSpacing: axisSpacing),
       itemBuilder: (BuildContext context, int index) {
