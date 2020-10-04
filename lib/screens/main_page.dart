@@ -34,7 +34,7 @@ class _MainPageState extends State<MainPage> {
           ),
           Container(
             color: accentColour,
-            height: 48,
+            height: MediaQuery.of(context).size.height / 16,
           )
         ],
       ),
@@ -214,7 +214,6 @@ class _MusicPlayerState extends State<MusicPlayer>
                           borderRadius: BorderRadius.circular(8.0),
                           color: primaryColour,
                         ),
-                        // child: isPaused ? pauseIcon[0] : pauseIcon[1],
                         child: Center(
                           child: AnimatedIcon(
                             icon: AnimatedIcons.play_pause,
@@ -299,7 +298,6 @@ class _ControlCenterItemState extends State<ControlCenterItem> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                  // padding: EdgeInsets.all(18),
                   child: FaIcon(
                     widget.icon,
                     semanticLabel: widget.title,
