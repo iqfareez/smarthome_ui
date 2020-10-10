@@ -40,7 +40,7 @@ class SettingPage extends StatelessWidget {
                         color: Color(0xFF1DA1F2),
                       ),
                       title: Text(
-                        'Get the source code',
+                        'Tweet tweet',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text('twitter.com/iqfareez2'),

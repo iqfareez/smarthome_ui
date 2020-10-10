@@ -1,6 +1,6 @@
 {
-    "name": "smarthome_ui",
-    "short_name": "smarthome_ui",
+    "name": "Smarthome UI",
+    "short_name": "Smarthome UI with Flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
