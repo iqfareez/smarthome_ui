@@ -12,6 +12,14 @@ Smarthome UI concept. Build with [Flutter](https://flutter.dev/) and Dart. Desig
 
 https://smarthome-ui-flutter.web.app/
 
+## Download the app
+
+https://play.google.com/store/apps/details?id=live.iqfareez.smarthome_ui
+
+## Speedcode
+
+https://youtu.be/mBjbVWaXu2k
+
 ## Dependencies :package:
 
 - [line_awesome_icons](https://pub.dev/packages/line_awesome_icons)
@@ -22,3 +30,7 @@ https://smarthome-ui-flutter.web.app/
 Slip a dollar or two. This will keep me motivated to code and create.
 
 **https://www.buymeacoffee.com/iqfareez**
+
+## Attribution
+
+1. https://undraw.co/illustrations
