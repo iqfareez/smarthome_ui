@@ -23,8 +23,11 @@ class SettingPage extends StatelessWidget {
                     ListTile(
                       leading:
                           FaIcon(FontAwesomeIcons.code, color: Colors.black),
-                      title: Text('Get the source code (free)'),
-                      subtitle: Text('https://gum.co/SxEWQ'),
+                      title: Text(
+                        'Get the source code',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Name your own price @ gum.co/SxEWQ'),
                     ),
                   ),
                   tapCard(
@@ -36,8 +39,11 @@ class SettingPage extends StatelessWidget {
                         FontAwesomeIcons.twitter,
                         color: Color(0xFF1DA1F2),
                       ),
-                      title: Text('Get the source code'),
-                      subtitle: Text('https://twitter.com/iqfareez2'),
+                      title: Text(
+                        'Get the source code',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('twitter.com/iqfareez2'),
                     ),
                   )
                 ],
