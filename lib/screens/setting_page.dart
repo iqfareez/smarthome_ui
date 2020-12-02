@@ -18,7 +18,8 @@ class SettingPage extends StatelessWidget {
                 children: [
                   tapCard(
                     () {
-                      LaunchUrlUtil.launchUrl('https://gum.co/SxEWQ');
+                      LaunchUrlUtil.launchUrl(
+                          'https://gumroad.com/l/SxEWQ/kqchkgi'); //copon code
                     },
                     ListTile(
                       leading:
@@ -63,6 +64,7 @@ class SettingPage extends StatelessWidget {
                     ),
                   ),
                 ],
+                //TODO: Add open in web and vice versa
               ),
             ),
             Expanded(
@@ -82,7 +84,7 @@ Widget tapCard(Function _onTap, Widget _child) {
       splashColor: accentColour.withAlpha(30),
       onTap: _onTap,
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.all(9.0),
         child: _child,
       ),
     ),
