@@ -8,7 +8,7 @@ const accentColour = Color(0xFF462990);
 const paddingValue = 16.0;
 
 const profileName = 'Alan Swimmer';
-const powerUsageText = '20.3';
+const powerUsageText = '42.8';
 const songTitle = 'Penat';
 const songArtist = 'Andi Bernadee';
 const songIconSize = 18.0;

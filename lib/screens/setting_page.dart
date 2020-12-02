@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,12 +15,14 @@ class SettingPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
+              flex: 2,
               child: ListView(
                 children: [
                   tapCard(
                     () {
-                      LaunchUrlUtil.launchUrl(
-                          'https://gumroad.com/l/SxEWQ/kqchkgi'); //copon code
+                      LaunchUrlUtil.launchUrl(!kIsWeb
+                          ? 'https://gumroad.com/l/SxEWQ/kqchkgi'
+                          : 'https://gumroad.com/l/SxEWQ'); //copon code
                     },
                     ListTile(
                       leading:
@@ -28,7 +31,7 @@ class SettingPage extends StatelessWidget {
                         'Get the source code',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text('Name your own price @ gum.co/SxEWQ'),
+                      subtitle: Text('100% discount when open in app'),
                     ),
                   ),
                   tapCard(
@@ -41,10 +44,10 @@ class SettingPage extends StatelessWidget {
                         color: Color(0xFF1DA1F2),
                       ),
                       title: Text(
-                        'Tweet tweet',
+                        'Twitter',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text('twitter.com/iqfareez2'),
+                      subtitle: Text('@qfareez2'),
                     ),
                   ),
                   tapCard(
@@ -63,15 +66,38 @@ class SettingPage extends StatelessWidget {
                           Text('dribbble.com/shots/11317039-Smart-Home-App'),
                     ),
                   ),
+                  tapCard(() {
+                    kIsWeb
+                        ? LaunchUrlUtil.launchUrl(
+                            'https://play.google.com/store/apps/details?id=live.iqfareez.smarthome_ui')
+                        : LaunchUrlUtil.launchUrl(
+                            'https://smarthome-ui-flutter.web.app/');
+                  },
+                      ListTile(
+                        leading: FaIcon(
+                          !kIsWeb
+                              ? FontAwesomeIcons.laptop
+                              : FontAwesomeIcons.googlePlay,
+                          color: Color(0xFF009c46),
+                        ),
+                        title: Text(kIsWeb
+                            ? 'Download on Google Play Store'
+                            : 'Open in web app'),
+                        subtitle: Text(kIsWeb
+                            ? 'play.google.com/store/apps/details?id=live.iqfareez.smarthome_ui'
+                            : 'smarthome-ui-flutter.web.app'),
+                      ))
                 ],
-                //TODO: Add open in web and vice versa
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SvgPicture.asset('images/undraw_source_code_xx2e.svg'),
-              ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset('images/undraw_source_code_xx2e.svg',
+                      fit: BoxFit.contain)),
+            ),
+            SizedBox(
+              height: 50,
             )
           ]),
     );
