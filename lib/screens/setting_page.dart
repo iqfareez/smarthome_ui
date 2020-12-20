@@ -22,7 +22,7 @@ class SettingPage extends StatelessWidget {
                     () {
                       LaunchUrlUtil.launchUrl(!kIsWeb
                           ? 'https://gumroad.com/l/SxEWQ/kqchkgi'
-                          : 'https://gumroad.com/l/SxEWQ'); //copon code
+                          : 'https://gumroad.com/l/SxEWQ'); //coupon code
                     },
                     ListTile(
                       leading:
@@ -47,7 +47,7 @@ class SettingPage extends StatelessWidget {
                         'Twitter',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text('@qfareez2'),
+                      subtitle: Text('@iqfareez2'),
                     ),
                   ),
                   tapCard(
