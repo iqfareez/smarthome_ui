@@ -22,8 +22,11 @@ https://youtu.be/mBjbVWaXu2k
 
 ## Dependencies :package:
 
-- [line_awesome_icons](https://pub.dev/packages/line_awesome_icons)
-- [flutter_circular_slider 2.5.0](https://pub.dev/packages/flutter_circular_slider)
+- [flutter_circular_slider](https://pub.dev/packages/flutter_circular_slider)
+- [google_fonts](https://pub.dev/packages/google_fonts)
+- [font_awesome_flutter](font_awesome_flutter)
+- [url_launcher](https://pub.dev/packages/url_launcher)
+- [flutter_svg](https://pub.dev/packages/flutter_svg)
 
 ## Buy me a coffee :coffee:
 
